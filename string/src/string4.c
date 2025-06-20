@@ -12,33 +12,33 @@
 
 #include <ft_string.h>
 
-char string_shift(t_string *str)
+char	string_shift(t_string *str)
 {
-    char c;
+	char	c;
 
-    if (!str || !str->size)
-        return ('\0');
-    c = str->data[0];
-    ft_memmove(str->data, str->data + 1, str->size);
-    str->size--;
-    str->data[str->size] = '\0';
-    return (c);
+	if (!str || !str->size)
+		return ('\0');
+	c = str->data[0];
+	ft_memmove(str->data, str->data + 1, str->size);
+	str->size--;
+	str->data[str->size] = '\0';
+	return (c);
 }
 
-void string_shift_by(t_string *str, size_t offset)
+void	string_shift_by(t_string *str, size_t offset)
 {
-    if (!str || offset >= str->size)
-        return (string_clear(str));
-    ft_memmove(str->data, str->data + offset, str->size - offset + 1);
-    str->size -= offset;
+	if (!str || offset >= str->size)
+		return (string_clear(str));
+	ft_memmove(str->data, str->data + offset, str->size - offset + 1);
+	str->size -= offset;
 }
 
-void string_shift_while(t_string *str, char *charset)
+void	string_shift_while(t_string *str, char *charset)
 {
-    if (!str || !charset)
-        return;
-    while (str->size > 0 && ft_strchr(charset, str->data[0]))
-        string_shift(str);
+	if (!str || !charset)
+		return ;
+	while (str->size > 0 && ft_strchr(charset, str->data[0]))
+		string_shift(str);
 }
 
 void	string_replace(t_string *str, char *old_str, char *new_str)
@@ -62,4 +62,27 @@ void	string_replace(t_string *str, char *old_str, char *new_str)
 		else
 			pos++;
 	}
+}
+
+size_t	string_segment_count(t_string *str, char delimiter)
+{
+	size_t	count;
+	size_t	i;
+
+	if (!str || !str->size)
+		return (0);
+	count = 0;
+	i = 0;
+	while (i < str->size)
+	{
+		while (i < str->size && str->data[i] == delimiter)
+			i++;
+		if (i < str->size)
+		{
+			count++;
+			while (i < str->size && str->data[i] != delimiter)
+				i++;
+		}
+	}
+	return (count);
 }

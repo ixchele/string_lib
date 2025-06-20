@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string.h                                           :+:      :+:    :+:   */
+/*   my_lib.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbengued <zbengued@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/19 18:25:41 by zbengued          #+#    #+#             */
-/*   Updated: 2025/06/19 18:44:16 by zbengued         ###   ########.fr       */
+/*   Created: 2025/06/20 23:02:56 by zbengued          #+#    #+#             */
+/*   Updated: 2025/06/20 23:08:33 by zbengued         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRING_H
-# define STRING_H
+#ifndef MY_LIB_H
+# define MY_LIB_H
 
-# include <libft.h>
+# include "../libft/headers/libft.h"
+# include "../string/headers/ft_string.h"
 
-# define INIT_CAPACITY 16
-
-typedef struct s_string
-{
-	char	*date;
-	size_t	size;
-	size_t	capacity;
-	size_t	peek;
-}	t_string;
-
-#endif
+#endif 

@@ -28,11 +28,11 @@ int	string_match(t_string *str, char *target,
 void	string_segment_remove(t_string *string, size_t start, size_t length)
 {
 	if (!string || start >= string->size)
-		return;
+		return ;
 	if (start + length > string->size)
 		length = string->size - start;
 	ft_memmove(string->data + start, string->data + start + length,
-			string->size - (start + length) + 1);
+		string->size - (start + length) + 1);
 	string->size -= length;
 }
 
@@ -40,7 +40,7 @@ void	string_segment_replace(t_string *str, size_t start,
 		size_t length, char *new_text)
 {
 	if (!str || !new_text)
-		return;
+		return ;
 	string_segment_remove(str, start, length);
 	string_insert(str, start, new_text);
 }

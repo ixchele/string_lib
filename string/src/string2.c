@@ -30,8 +30,8 @@ void	string_insert(t_string *str, size_t pos, char *to_insert)
 	insert_len = ft_strlen(to_insert);
 	string_ensure_capacity(str, str->size + insert_len);
 	ft_memmove(str->data + pos + insert_len,
-				str->data + pos,
-				str->size - pos + 1);
+		str->data + pos,
+		str->size - pos + 1);
 	ft_memcpy(str->data + pos, to_insert, insert_len);
 	str->size += insert_len;
 }
@@ -43,7 +43,7 @@ void	string_erase(t_string *str, size_t pos, size_t len)
 	if (pos + len > str->size)
 		len = str->size - pos;
 	ft_memmove(str->data + pos,
-			str->data + pos + len, str->size - pos - len + 1);
+		str->data + pos + len, str->size - pos - len + 1);
 	str->size -= len;
 }
 

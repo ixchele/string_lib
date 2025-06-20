@@ -12,69 +12,69 @@
 
 #include <ft_string.h>
 
-void string_init(t_string *str)
+void	string_init(t_string *str)
 {
-    str->data = ft_calloc(INIT_CAPACITY + 1, sizeof(char));
-    if (!str->data)
-        return;
-    str->size = 0;
-    str->capacity = INIT_CAPACITY;
-    str->peek = 0;
+	str->data = ft_calloc(INIT_CAPACITY + 1, sizeof(char));
+	if (!str->data)
+		return ;
+	str->size = 0;
+	str->capacity = INIT_CAPACITY;
+	str->peek = 0;
 }
 
-void string_destroy(t_string *str)
+void	string_destroy(t_string *str)
 {
-    if (str->data)
-        free(str->data);
-    str->data = NULL;
-    str->size = 0;
-    str->capacity = 0;
-    str->peek = 0;
+	if (str->data)
+		free(str->data);
+	str->data = NULL;
+	str->size = 0;
+	str->capacity = 0;
+	str->peek = 0;
 }
 
-void string_ensure_capacity(t_string *str, size_t needed_capacity)
+void	string_ensure_capacity(t_string *str, size_t needed_capacity)
 {
-    size_t new_capacity;
-    char *new_data;
+	size_t	new_capacity;
+	char	*new_data;
 
-    if (str->capacity >= needed_capacity)
-        return;
-    new_capacity = str->capacity;
-    while (new_capacity < needed_capacity)
-        new_capacity *= 2;
-    new_data = ft_calloc(new_capacity + 1, sizeof(char));
-    if (!new_data)
-        return;
-    ft_memcpy(new_data, str->data, str->size);
-    new_data[str->size] = '\0';
-    free(str->data);
-    str->data = new_data;
-    str->capacity = new_capacity;
+	if (str->capacity >= needed_capacity)
+		return ;
+	new_capacity = str->capacity;
+	while (new_capacity < needed_capacity)
+		new_capacity *= 2;
+	new_data = ft_calloc(new_capacity + 1, sizeof(char));
+	if (!new_data)
+		return ;
+	ft_memcpy(new_data, str->data, str->size);
+	new_data[str->size] = '\0';
+	free(str->data);
+	str->data = new_data;
+	str->capacity = new_capacity;
 }
 
-void string_set(t_string *str, char *new_data)
+void	string_set(t_string *str, char *new_data)
 {
-    size_t new_len;
+	size_t	new_len;
 
-    if (!str || !new_data)
-        return;
-    new_len = ft_strlen(new_data);
-    string_ensure_capacity(str, new_len);
-    ft_memcpy(str->data, new_data, new_len);
-    str->data[new_len] = '\0';
-    str->size = new_len;
-    str->peek = 0;
+	if (!str || !new_data)
+		return ;
+	new_len = ft_strlen(new_data);
+	string_ensure_capacity(str, new_len);
+	ft_memcpy(str->data, new_data, new_len);
+	str->data[new_len] = '\0';
+	str->size = new_len;
+	str->peek = 0;
 }
 
-void string_append(t_string *str, char *to_add)
+void	string_append(t_string *str, char *to_add)
 {
-    size_t len;
+	size_t	len;
 
-    if (!str || !to_add)
-        return;
-    len = ft_strlen(to_add);
-    string_ensure_capacity(str, str->size + len);
-    ft_memcpy(str->data + str->size, to_add, len);
-    str->size += len;
-    str->data[str->size] = '\0';
+	if (!str || !to_add)
+		return ;
+	len = ft_strlen(to_add);
+	string_ensure_capacity(str, str->size + len);
+	ft_memcpy(str->data + str->size, to_add, len);
+	str->size += len;
+	str->data[str->size] = '\0';
 }
